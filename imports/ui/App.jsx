@@ -38,6 +38,7 @@ class App extends Component {
                 <Event
                     key={event._id}
                     data={event}
+                    eventPending={this.state.eventPending}
                     cancelPending={this.cancelPending.bind(this)}
                 />
             );
@@ -45,11 +46,11 @@ class App extends Component {
     }
 
     newEvent() {
-        Meteor.call('events.new', 'Event Title', 'Event Description', Session.get('geo'));
         $(ReactDOM.findDOMNode(this.refs.createEventBtn)).slideUp(200);
         this.setState({
             eventPending:true  
         });
+        Meteor.call('events.new', 'Event Title', 'Event Description', Session.get('geo'));
     }
 
     cancelPending() {

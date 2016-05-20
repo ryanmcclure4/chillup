@@ -14,7 +14,9 @@ export default class EventTitle extends Component {
     }
 
     componentDidMount() {
-        $(ReactDOM.findDOMNode(this.refs.titleText)).trigger('click');
+        if(this.props.eventPending){
+            $(ReactDOM.findDOMNode(this.refs.titleText)).trigger('click');
+        }
     }
 
     dataChanged(data) {

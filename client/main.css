@@ -162,7 +162,6 @@ button:focus {
     font-weight: 700;
     font-size: 1em;
     font-family: 'Open Sans';
-    width: 80%;
     border:none;
     outline:none;
     border-bottom: 2px solid rgba(255,255,255,0.3);

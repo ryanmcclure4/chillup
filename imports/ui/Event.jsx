@@ -67,6 +67,7 @@ export default class Event extends Component {
         return(
             <li className='event'>
                 <EventTitle 
+                    eventPending={this.props.eventPending}
                     joined={this.state.joined} 
                     data={this.props.data} 
                     cancelPending={this.props.cancelPending}
