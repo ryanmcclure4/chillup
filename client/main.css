@@ -87,7 +87,7 @@ button:focus {
     background-color: #38adbd;
     font-weight: 700;
     font-size: 1.5em;
-    border-bottom: 3px solid rgba(0,0,0,0.1);
+    border-bottom: 5px solid rgba(0,0,0,0.1);
     color: #fff;
     padding: 12px;
 }
@@ -172,7 +172,6 @@ button:focus {
     font-weight: 700;
     font-size: 1em;
     font-family: 'Open Sans';
-    width: 80%;
     border:none;
     outline:none;
     border-bottom: 2px solid #38adbd;
@@ -202,7 +201,7 @@ button:focus {
     padding: 7px 10px;
     border-radius: 2px;
     border:none;
-    background-color: rgba(255,255,255,0.7);
+    background-color: #eee;
     color: #555;
     font-weight: 700;
 }

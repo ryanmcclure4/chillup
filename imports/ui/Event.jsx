@@ -23,7 +23,7 @@ export default class Event extends Component {
                         {comment.created.getHours() % 12}:
                         {(comment.created.getMinutes() / 10) < 1 ? '0' : ''}
                         {comment.created.getMinutes()}
-                        {comment.created.getHours() / 12 ? 'pm' : 'am'}
+                        {(comment.created.getHours() - 12) > 0 ? 'pm' : 'am'}
                     </span>
                     <span className='author'>{comment.author} :</span>
                     {comment.comment}
