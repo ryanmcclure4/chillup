@@ -13,6 +13,10 @@ export default class EventTitle extends Component {
         }
     }
 
+    componentDidMount() {
+        $(ReactDOM.findDOMNode(this.refs.titleText)).trigger('click');
+    }
+
     dataChanged(data) {
         Meteor.call('events.update', this.props.data._id, data);
         this.setState({
@@ -47,3 +51,5 @@ export default class EventTitle extends Component {
         );
     }
 }
+
+
