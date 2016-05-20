@@ -7,7 +7,6 @@ export const Events = new Mongo.Collection('events');
 if (Meteor.isServer) {
     Events._ensureIndex({loc:"2dsphere"}); 
     Meteor.publish('events', function(location) {
-        console.log(location);
         return Events.find({
             loc: {
                 $near: {
@@ -43,8 +42,8 @@ Meteor.methods({
     'events.delete'(id) {
         Events.remove(id);
     },
-    'events.addComment'(id, comment) {
-        Events.update(id, { $push: { comments: comment } });
+    'events.addComment'(id, author, comment) {
+        Events.update(id, { $push: { comments: { 'author' : author, 'comment' : comment, 'created' : new Date() } } });
     },
     'events.join'(id) {
         Events.update(id, { $inc: { attendance : 1 } });

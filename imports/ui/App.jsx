@@ -45,17 +45,15 @@ class App extends Component {
     }
 
     newEvent() {
-        if (this.state.eventPending) {
-            window.alert('Please finish creating your first event!');
-            return;
-        }
         Meteor.call('events.new', 'Event Title', 'Event Description', Session.get('geo'));
+        $(ReactDOM.findDOMNode(this.refs.createEventBtn)).slideUp(200);
         this.setState({
             eventPending:true  
         });
     }
 
     cancelPending() {
+        $(ReactDOM.findDOMNode(this.refs.createEventBtn)).slideDown(200);
         this.setState({
             eventPending:false  
         });
@@ -65,7 +63,7 @@ class App extends Component {
         return (
             <div className="container">
                 <h1>Chillup</h1>
-                <div className='create-event'>
+                <div ref='createEventBtn' className='create-event'>
                     <button 
                         className='btn-create-event' 
                         onClick={this.newEvent.bind(this)}>

@@ -15,6 +15,23 @@ export default class Event extends Component {
         }
     }
 
+    renderComments() {
+        return this.props.data.comments.map((comment) => {
+            return (
+                <li key={Math.random()} className='comment'>
+                    <span className='time'>
+                        {comment.created.getHours() % 12}:
+                        {(comment.created.getMinutes() / 10) < 1 ? '0' : ''}
+                        {comment.created.getMinutes()}
+                        {comment.created.getHours() / 12 ? 'pm' : 'am'}
+                    </span>
+                    <span className='author'>{comment.author} :</span>
+                    {comment.comment}
+                </li>
+            ); 
+        });
+    }
+
     dataChanged(data) {
         Meteor.call('events.update', this.props.data._id, data);
         this.setState({
@@ -24,6 +41,7 @@ export default class Event extends Component {
 
     onJoinEvent() {
         $(ReactDOM.findDOMNode(this.refs.comments)).stop(true,true).slideToggle(200);
+
         if (this.state.joined) {
             Meteor.call('events.leave', this.props.data._id);
         } else {
@@ -35,22 +53,14 @@ export default class Event extends Component {
         });
     }
 
-    renderComments() {
-        return this.props.data.comments.map((comment) => {
-            return (
-                <li key={Math.random()} className='comment'>
-                    <span className='icon fa fa-chevron-right'></span>
-                    {comment}
-                </li>
-            ); 
-        });
-    }
-
-    onAddComment(event) {
-        event.preventDefault();
-        const commentInput = ReactDOM.findDOMNode(this.refs.commentInput).value.trim();
-        Meteor.call('events.addComment', this.props.data._id, commentInput);
-        ReactDOM.findDOMNode(this.refs.commentInput).value = '';
+    addCommentOnEnter(event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            const commentAuthor = ReactDOM.findDOMNode(this.refs.commentAuthor).value.trim();
+            const commentInput = ReactDOM.findDOMNode(this.refs.commentInput).value.trim();
+            Meteor.call('events.addComment', this.props.data._id, commentAuthor, commentInput);
+            ReactDOM.findDOMNode(this.refs.commentInput).value = '';
+        }
     }
 
     render() {
@@ -72,9 +82,10 @@ export default class Event extends Component {
                 </div>
                 <div ref='comments' className='event-comments'>
                     <ul className='comments-list'>{this.renderComments()}</ul>
-                    <form className='new-comment' onSubmit={this.onAddComment.bind(this)} >
-                        <input ref='commentInput' className='comment-field'></input>
-                    </form>
+                    <div className='input-container'>
+                        <input ref='commentAuthor' className='comment-field comment-author' placeholder='your name'></input>
+                        <input onKeyDown={this.addCommentOnEnter.bind(this)} ref='commentInput' className='comment-field comment-text' placeholder='add a comment'></input>
+                    </div>
                 </div>
             </li>
         );
