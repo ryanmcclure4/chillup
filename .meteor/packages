@@ -24,3 +24,4 @@ mdg:geolocation
 session
 jaymc:google-reverse-geocode
 lookback:tooltips
+aldeed:geocoder

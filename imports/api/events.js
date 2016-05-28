@@ -7,17 +7,19 @@ export const Events = new Mongo.Collection('events');
 if (Meteor.isServer) {
     Events._ensureIndex({loc:"2dsphere"}); 
     Meteor.publish('events', function(location) {
-        return Events.find({
-            loc: {
-                $near: {
-                    $geometry: {
-                        type: "Point",
-                        coordinates: [location.lng, location.lat]
-                    },
-                    $maxDistance: 50000
+        if (location) {
+            return Events.find({
+                loc: {
+                    $near: {
+                        $geometry: {
+                            type: "Point",
+                            coordinates: [location.lng, location.lat]
+                        },
+                        $maxDistance: 50000
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 }
 
