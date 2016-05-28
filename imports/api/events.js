@@ -5,19 +5,23 @@ import { check } from 'meteor/check';
 export const Events = new Mongo.Collection('events');
 
 if (Meteor.isServer) {
-    Events._ensureIndex({loc:"2dsphere"}); 
-    Meteor.publish('events', function(location) {
+    Events._ensureIndex({ loc: '2dsphere' }); 
+    Meteor.publish('events', function(location, pending) {
         if (location) {
             return Events.find({
                 loc: {
                     $near: {
                         $geometry: {
-                            type: "Point",
+                            type: 'Point',
                             coordinates: [location.lng, location.lat]
                         },
                         $maxDistance: 50000
                     }
-                }
+                },
+                $or: [
+                    { active: false, _id: pending },
+                    { active: { $ne: false } }
+                ]
             });
         }
     });
@@ -28,7 +32,7 @@ Meteor.methods({
         check(title, String);
         check(description, String);
 
-        Events.insert({
+        return Events.insert({
             created: new Date(),
             title: title,
             description: description,

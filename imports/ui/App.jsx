@@ -9,9 +9,10 @@ import Event from './Event.jsx';
 class App extends Component {
     constructor(props) {
         super(props);
+        Session.set('pending',null);
 
         this.state = ({
-            eventPending:false  
+            eventPending:false
         });
     }
 
@@ -50,11 +51,15 @@ class App extends Component {
         this.setState({
             eventPending:true  
         });
-        Meteor.call('events.new', 'Event Title', 'Event Description', Session.get('geo'));
+        Meteor.call('events.new', 'Event Title', 'Event Description', Session.get('geo'), function(err, res) {
+            Session.set('pending', res); 
+            console.log(Session.get('pending'));
+        });
     }
 
     cancelPending() {
         $(ReactDOM.findDOMNode(this.refs.createEventBtn)).slideDown(200);
+        Session.set('pending', null);
         this.setState({
             eventPending:false  
         });
@@ -84,7 +89,7 @@ App.propTypes = {
 };
 
 export default createContainer(() => {
-    Meteor.subscribe('events', Session.get('geo'));
+    Meteor.subscribe('events', Session.get('geo'), Session.get('pending'));
     let loc = Session.get('loc');
 
     return {
