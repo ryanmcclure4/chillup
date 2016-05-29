@@ -10,3 +10,8 @@ It is built using [Meteor](http://meteor.com) utilizing the following packages:
  - Google Places API for geolocation.
  - `node-geocoder` for reverse location lookups.
  - `react` UI components.
+
+_To deploy_:
+ - [Obtain](https://developers.google.com/maps/documentation/geolocation/get-api-key) a Google API server key and enable it for Google Maps.
+ - `cd chillup`
+ - `GOOGLE_API=your_google_api_key meteor`
