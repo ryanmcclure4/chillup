@@ -74,12 +74,16 @@ export default class Event extends Component {
                     onJoinEvent={this.onJoinEvent.bind(this)} 
                 />
                 <div className='event-description'>
-                    <InlineEdit 
-                        text={this.state.description} 
-                        change={this.dataChanged.bind(this)} 
-                        paramName='description'
-                        activeClassName='inline-edit-description'
-                    />
+                    {this.props.data.active ?
+                        <span>
+                            {this.props.data.description}
+                        </span>
+                    :   <InlineEdit 
+                            text={this.state.description} 
+                            change={this.dataChanged.bind(this)} 
+                            paramName='description'
+                            activeClassName='inline-edit-description'
+                        />}
                 </div>
                 <div ref='comments' className='event-comments'>
                     <ul className='comments-list'>{this.renderComments()}</ul>
