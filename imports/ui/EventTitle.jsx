@@ -10,7 +10,7 @@ export default class EventTitle extends Component {
 
         this.state = {
             title:this.props.data.title,
-            exp:String(12)
+            exp:String(this.props.data.exp)
         }
     }
 
