@@ -13,5 +13,11 @@ It is built using [Meteor](http://meteor.com) utilizing the following packages:
 
 _To deploy_:
  - [Obtain](https://developers.google.com/maps/documentation/geolocation/get-api-key) a Google API server key and enable it for Google Maps.
+ - Create a file `settings.json` and set `googleApiKey`:
+```
+ { 
+    "googleApiKey" : "your_key_here" 
+ }
+```
  - `cd chillup`
- - `GOOGLE_API=your_google_api_key meteor`
+ - `meteor run --settings settings.json`
