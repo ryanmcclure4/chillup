@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import '../imports/api/events.js';
 
-var googleApiKey = process.env.GOOGLE_API;
+var googleApiKey = Meteor.settings.googleApiKey;
 
 Meteor.methods({
     getLocation:function(geo) {
