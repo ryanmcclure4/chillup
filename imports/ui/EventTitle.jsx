@@ -34,14 +34,16 @@ export default class EventTitle extends Component {
     render() {
         return (
             <div ref='title' className='event-title'>
-                <InlineEdit 
-                    ref='titleText'
-                    autofocus={true}
-                    text={this.state.title} 
-                    change={this.dataChanged.bind(this)} 
-                    paramName='title'
-                    activeClassName='inline-edit-title'
-                />
+                <span className='title-container'>
+                    <InlineEdit 
+                        ref='titleText'
+                        autofocus={true}
+                        text={this.state.title} 
+                        change={this.dataChanged.bind(this)} 
+                        paramName='title'
+                        activeClassName='inline-edit-title'
+                    />
+                </span>
                 <EventButtons 
                     id={this.props.data._id} 
                     joined={this.props.joined} 

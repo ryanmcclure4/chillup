@@ -90,6 +90,8 @@ button:focus {
     border-bottom: 5px solid rgba(0,0,0,0.1);
     color: #fff;
     padding: 12px;
+    display: flex;
+    flex-direction: row;
 }
 
 .event-title.joined {
@@ -156,10 +158,16 @@ button:focus {
     flex:1;
 }
 
+.title-container {
+    flex-grow: 1;
+    padding-right: 15px;
+}
+
 .inline-edit-title {
     background-color: transparent;
     color: #fff;
     font-weight: 700;
+    width: 100%;
     font-size: 1em;
     font-family: 'Open Sans';
     border:none;
@@ -195,6 +203,10 @@ button:focus {
 .buttons {
     float:right;
 }
+
+.buttons-container {
+    flex-shrink: 0;
+} 
 
 .btn-join {
     float: right;
@@ -245,4 +257,19 @@ button:focus {
 
 .btn-confirm:hover {
     background-color: #88ff88;
+}
+
+@media (max-width:480px) {
+    .input-container {
+        flex-wrap: wrap;
+    }
+
+    .comment-field {
+        width: 100%;
+    }
+
+    .comment-author {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
 }

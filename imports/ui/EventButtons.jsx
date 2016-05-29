@@ -32,7 +32,7 @@ export default class EventButtons extends Component {
 
     render() {
         return (
-            <span>
+            <span className='buttons-container'>
                 {this.props.active ?
                     <button 
                         ref='joinButton' 
