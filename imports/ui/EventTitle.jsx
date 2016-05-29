@@ -9,7 +9,8 @@ export default class EventTitle extends Component {
         super(props);
 
         this.state = {
-            title:this.props.data.title
+            title:this.props.data.title,
+            exp:String(12)
         }
     }
 
@@ -25,6 +26,12 @@ export default class EventTitle extends Component {
             ...data
         }); 
     } 
+
+    calculateExpDate() {
+        var now = new Date();
+        var elapsed = (((now.getTime() - this.props.data.created.getTime()) / 1000) / 60) / 60;
+        return Math.round(this.props.data.exp - elapsed);
+    }
 
     onJoinEvent() {
         $(ReactDOM.findDOMNode(this.refs.title)).toggleClass('joined');
@@ -47,8 +54,27 @@ export default class EventTitle extends Component {
                             activeClassName='inline-edit-title'
                         />}
                 </span>
-                <span className='expiration-container'>
-                    
+                <span className='exp-container'>
+                    {this.props.data.active ?
+                        <div>
+                            <div>ENDS IN</div>
+                            <div>{this.calculateExpDate()} HOURS</div>
+                        </div>
+                    :   <div className='exp-container-pending'>
+                            <div>SHOW FOR</div>
+                            <div>
+                                <InlineEdit
+                                    ref='expTime'
+                                    text={this.state.exp}
+                                    maxLength={2}
+                                    change={this.dataChanged.bind(this)}
+                                    paramName='exp'
+                                    className='inline-edit-exp'
+                                    activeClassName='inline-edit-exp-active'
+                                />
+                                HOURS
+                            </div>
+                        </div>}
                 </span>
                 <EventButtons 
                     id={this.props.data._id} 

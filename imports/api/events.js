@@ -39,7 +39,8 @@ Meteor.methods({
             attendance: 1,
             active:false,
             comments: [],
-            loc: [location.lng, location.lat]
+            loc: [location.lng, location.lat],
+            exp: 24
         });
     },
     'events.update'(id, data) {

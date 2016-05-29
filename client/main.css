@@ -164,7 +164,6 @@ button:focus {
 
 .title-container {
     flex-grow: 1;
-    padding-right: 15px;
 }
 
 .inline-edit-title {
@@ -197,6 +196,36 @@ button:focus {
     outline:none;
     border-bottom: 3px solid rgba(255,255,255,0.3);
     width: 100%;
+}
+
+.inline-edit-exp {
+    width: 20px;
+    padding-right: 5px;
+    color: #fff;
+}
+
+.inline-edit-exp-active{
+    width: 20px;
+    background-color: transparent;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1em;
+    font-family: 'Open Sans';
+    border:none;
+    outline:none;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+}
+
+.exp-container {
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+    color: rgba(0,0,0,0.3);
+    font-size: 0.6em;
+}
+
+.exp-container-pending {
+    color: #fff;
 }
 
 .icon {

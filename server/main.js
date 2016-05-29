@@ -1,7 +1,18 @@
 import { Meteor } from 'meteor/meteor';
-import '../imports/api/events.js';
+import { Events } from '../imports/api/events.js';
 
 var googleApiKey = Meteor.settings.googleApiKey;
+
+var removeExpiredEvents = function() {
+    var cursor = Events.find({}, { sort: { created: -1 } });
+    cursor.forEach(function(event) {
+        var now = new Date();
+        var elapsed = (((now.getTime() - event.created.getTime()) / 1000) / 60) / 60;
+        if (elapsed >= event.exp) {
+            Events.remove(event._id);
+        }
+    });
+}
 
 Meteor.methods({
     getLocation:function(geo) {
@@ -20,4 +31,6 @@ Meteor.methods({
 });
 
 Meteor.startup(() => {
+    removeExpiredEvents();
+    Meteor.setInterval(removeExpiredEvents, 10000);
 });

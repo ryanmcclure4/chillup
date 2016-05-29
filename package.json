@@ -8,7 +8,11 @@
     "meteor-node-stubs": "~0.2.0",
     "react": "^15.0.2",
     "react-addons-pure-render-mixin": "^15.0.2",
+    "react-bootstrap-dropdown": "^0.2.1",
     "react-dom": "^15.0.2",
     "react-edit-inline": "^1.0.7"
+  },
+  "devDependencies": {
+    "react-bootstrap": "^0.29.4"
   }
 }
