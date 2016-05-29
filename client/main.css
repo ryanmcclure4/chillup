@@ -2,7 +2,10 @@ body {
     font-family: 'Open Sans';
     font-size: 0.9em;
     text-align: center;
+    height: 100%;
+    margin: 0;
     background: linear-gradient(to bottom right, #7cdfef, #6bcede);
+    background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
@@ -43,6 +46,7 @@ button:focus {
 .container {
     max-width: 600px;
     margin: 0 auto;
+    padding: 15px;
     min-height: 100%;
 }
 
