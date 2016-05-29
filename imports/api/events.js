@@ -43,18 +43,23 @@ Meteor.methods({
         });
     },
     'events.update'(id, data) {
+        check(id, String);
         Events.update(id, { $set: { ...data } });
     },
     'events.delete'(id) {
+        check(id, String);
         Events.remove(id);
     },
     'events.addComment'(id, author, comment) {
+        check(id, String);
         Events.update(id, { $push: { comments: { 'author' : author, 'comment' : comment, 'created' : new Date() } } });
     },
     'events.join'(id) {
+        check(id, String);
         Events.update(id, { $inc: { attendance : 1 } });
     },
     'events.leave'(id) {
+        check(id, String);
         Events.update(id, { $inc: { attendance : -1 } });
     }
 });
