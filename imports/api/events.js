@@ -28,11 +28,16 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'events.new'(title, description, location) {
+    'events.new'(title, description, location, id) {
         check(title, String);
         check(description, String);
 
+        if(typeof(id) === 'undefined'){
+            id = new Meteor.Collection.ObjectID()._str;
+        }
+
         return Events.insert({
+            _id: id,
             created: new Date(),
             title: title,
             description: description,
