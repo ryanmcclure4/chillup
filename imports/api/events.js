@@ -41,11 +41,11 @@ Meteor.methods({
             created: new Date(),
             title: title,
             description: description,
-            attendance: 1,
             active:false,
             comments: [],
             author: author,
             loc: [location.lng, location.lat],
+            attendees: [author],
             exp: 24
         });
     },
@@ -61,12 +61,12 @@ Meteor.methods({
         check(id, String);
         Events.update(id, { $push: { comments: { 'avatar' : avatar, 'comment' : comment, 'created' : new Date() } } });
     },
-    'events.join'(id) {
+    'events.join'(id, user) {
         check(id, String);
-        Events.update(id, { $inc: { attendance : 1 } });
+        Events.update(id, { $addToSet: { attendees: user } });
     },
-    'events.leave'(id) {
+    'events.leave'(id, user) {
         check(id, String);
-        Events.update(id, { $inc: { attendance : -1 } });
+        Events.update(id, { $pull: { attendees: user } });
     }
 });

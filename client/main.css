@@ -33,6 +33,10 @@ button:focus {
     display: none;
 }
 
+.show {
+    display: inline!;
+}
+
 .btn-join,
 .event-title,
 .inline-edit-title,
@@ -111,7 +115,6 @@ button:focus {
 
 .event-comments {
     border-top: 1px dotted rgba(0,0,0,0.1);
-    display: none;
     padding: 0px;
     color: #555;
 }
@@ -263,35 +266,33 @@ button:focus {
 
 .btn-join {
     float: right;
-    padding: 7px 10px;
+    padding: 10px 12px;
     border-radius: 2px;
     border:none;
-    background-color: #eee;
-    color: #555;
+    background-color: rgba(0,0,0,0.2);
+    color: #fff;
     font-weight: 700;
 }
 
 .btn-join:hover {
-    background-color: #fff;
+    background-color: rgba(0,0,0,0.3);
 }
 
 .btn-join.joined {
-    background-color: #38adbd;
-    color: #fff;
+    background-color: #eee;
+    color: #555;
 }
 
 .btn-join.joined:hover {
-    background-color: #279cac;
-    color: #fff;
+    background-color: rgba(0,0,0,0.1);
 }
 
 .btn-cancel {
-    padding: 4px 6px;
-    margin-right: 10px;
+    padding: 8px 10px;
+    margin-right: 12px;
     border-radius: 2px;
     border:none;
     background-color: #ee9977;
-    border: 3px solid #dd8866;
     color: #fff;
 }
 
@@ -300,11 +301,10 @@ button:focus {
 }
 
 .btn-confirm {
-    padding: 4px 6px;
+    padding: 8px 10px;
     border-radius: 2px;
     border:none;
     background-color: #77ee77;
-    border: 3px solid #66dd66;
     color: #fff;
 }
 

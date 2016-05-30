@@ -8,9 +8,9 @@ import EventTitle from './EventTitle.jsx';
 export default class Event extends Component {
     constructor(props) {
         super(props);
-
+        var joined = Session.get('user') == this.props.data.author;
         this.state = {
-            joined:false,
+            joined:joined,
             description:this.props.data.description
         }
     }
@@ -43,9 +43,9 @@ export default class Event extends Component {
         $(ReactDOM.findDOMNode(this.refs.comments)).stop(true,true).slideToggle(200);
 
         if (this.state.joined) {
-            Meteor.call('events.leave', this.props.data._id);
+            Meteor.call('events.leave', this.props.data._id, Session.get('user'));
         } else {
-            Meteor.call('events.join', this.props.data._id);
+            Meteor.call('events.join', this.props.data._id, Session.get('user'));
         }
 
         this.setState({
@@ -64,6 +64,7 @@ export default class Event extends Component {
     }
 
     render() {
+        var addClass = this.state.joined ? 'event-comments' : 'event-comments hidden';
         return(
             <li className='event'>
                 <EventTitle 
@@ -85,7 +86,7 @@ export default class Event extends Component {
                             activeClassName='inline-edit-description'
                         />}
                 </div>
-                <div ref='comments' className='event-comments'>
+                <div ref='comments' className={addClass}>
                     <ul className='comments-list'>{this.renderComments()}</ul>
                     <div className='input-container'>
                         <input onKeyDown={this.addCommentOnEnter.bind(this)} ref='commentInput' className='comment-field comment-text' placeholder='add a comment'></input>

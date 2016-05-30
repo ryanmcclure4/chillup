@@ -39,8 +39,9 @@ export default class EventTitle extends Component {
     }
 
     render() {
+        var addClass = this.props.joined ? 'event-title joined' : 'event-title';
         return (
-            <div ref='title' className='event-title'>
+            <div ref='title' className={addClass}>
                 <span className='title-container'>
                     {this.props.data.active ?
                         <span>
@@ -80,7 +81,7 @@ export default class EventTitle extends Component {
                     id={this.props.data._id} 
                     joined={this.props.joined} 
                     active={this.props.data.active} 
-                    attendance={this.props.data.attendance} 
+                    attendees={this.props.data.attendees} 
                     cancelPending={this.props.cancelPending}
                     onJoinEvent={this.onJoinEvent.bind(this)} />
             </div>

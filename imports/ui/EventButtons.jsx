@@ -7,9 +7,11 @@ export default class EventButtons extends Component {
             return "LEAVE";
         }
 
-        var buttontext = "JOIN 1 OTHER";
-        if (this.props.attendance > 1) {
-            buttontext = "JOIN " + this.props.attendance + " OTHERS";
+        var buttontext = "JOIN";
+        if (this.props.attendees.length == 1) {
+            buttontext += " 1 OTHER";
+        } else if (this.props.attendees.length > 1) {
+            buttontext += " " + this.props.attendees.length + " OTHERS";
         }
 
         return buttontext;
@@ -31,12 +33,13 @@ export default class EventButtons extends Component {
     }
 
     render() {
+        var addClass = this.props.joined ? 'btn-join joined' : 'btn-join';
         return (
             <span className='buttons-container'>
                 {this.props.active ?
                     <button 
                         ref='joinButton' 
-                        className='btn-join' 
+                        className={addClass} 
                         onClick={this.onJoinEvent.bind(this)}>
                         {this.renderButtonText()}
                     </button>
