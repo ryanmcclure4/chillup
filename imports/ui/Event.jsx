@@ -19,14 +19,14 @@ export default class Event extends Component {
         return this.props.data.comments.map((comment) => {
             return (
                 <li key={Math.random()} className='comment'>
+                    <img className='avatar' src={comment.avatar}/>
+                    <span className='comment-posted'>{comment.comment}</span>
                     <span className='time'>
                         {comment.created.getHours() % 12}:
                         {(comment.created.getMinutes() / 10) < 1 ? '0' : ''}
                         {comment.created.getMinutes()}
                         {(comment.created.getHours() - 12) > 0 ? 'pm' : 'am'}
                     </span>
-                    <span className='author'>{comment.author} :</span>
-                    {comment.comment}
                 </li>
             ); 
         });
@@ -56,9 +56,9 @@ export default class Event extends Component {
     addCommentOnEnter(event) {
         if (event.keyCode == 13) {
             event.preventDefault();
-            const commentAuthor = ReactDOM.findDOMNode(this.refs.commentAuthor).value.trim();
+            const commentAuthor = Session.get('user');
             const commentInput = ReactDOM.findDOMNode(this.refs.commentInput).value.trim();
-            Meteor.call('events.addComment', this.props.data._id, commentAuthor, commentInput);
+            Meteor.call('events.addComment', this.props.data._id, Session.get('avatar'), commentInput);
             ReactDOM.findDOMNode(this.refs.commentInput).value = '';
         }
     }
@@ -88,7 +88,6 @@ export default class Event extends Component {
                 <div ref='comments' className='event-comments'>
                     <ul className='comments-list'>{this.renderComments()}</ul>
                     <div className='input-container'>
-                        <input ref='commentAuthor' className='comment-field comment-author' placeholder='your name'></input>
                         <input onKeyDown={this.addCommentOnEnter.bind(this)} ref='commentInput' className='comment-field comment-text' placeholder='add a comment'></input>
                     </div>
                 </div>

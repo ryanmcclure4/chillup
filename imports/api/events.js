@@ -28,11 +28,11 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'events.new'(title, description, location, id) {
+    'events.new'(author, title, description, location, id) {
         check(title, String);
         check(description, String);
 
-        if(typeof(id) === 'undefined'){
+        if(typeof(id) == 'undefined'){
             id = new Meteor.Collection.ObjectID()._str;
         }
 
@@ -44,6 +44,7 @@ Meteor.methods({
             attendance: 1,
             active:false,
             comments: [],
+            author: author,
             loc: [location.lng, location.lat],
             exp: 24
         });
@@ -56,9 +57,9 @@ Meteor.methods({
         check(id, String);
         Events.remove(id);
     },
-    'events.addComment'(id, author, comment) {
+    'events.addComment'(id, avatar, comment) {
         check(id, String);
-        Events.update(id, { $push: { comments: { 'author' : author, 'comment' : comment, 'created' : new Date() } } });
+        Events.update(id, { $push: { comments: { 'avatar' : avatar, 'comment' : comment, 'created' : new Date() } } });
     },
     'events.join'(id) {
         check(id, String);

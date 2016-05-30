@@ -9,7 +9,20 @@ import Event from './Event.jsx';
 class App extends Component {
     constructor(props) {
         super(props);
+        var avatars = {
+            'chick':'img/chick.png',
+            'tiger':'img/tiger.png',
+            'whale':'img/whale.png',
+            'fox':'img/fox.png',
+            'duckling':'img/duckling.png',
+            'koala':'img/koala.png',
+            'crab':'img/crab.png',
+            'pig':'img/pig.png'
+        };
+        var avatarKeys = Object.keys(avatars);
         Session.set('pending', '');
+        Session.setDefaultPersistent('user', new Meteor.Collection.ObjectID()._str);
+        Session.setDefaultPersistent('avatar', avatars[avatarKeys[avatarKeys.length * Math.random() << 0]]);
         this.state = ({
             eventPending:false
         });
@@ -51,7 +64,7 @@ class App extends Component {
         });
         var id = new Meteor.Collection.ObjectID()._str;
         Session.set('pending', id); 
-        Meteor.call('events.new', 'Event Title', 'Event Description', Session.get('geo'), id);
+        Meteor.call('events.new', Session.get('user'), 'Event Title', 'Event Description', Session.get('geo'), id);
         $(ReactDOM.findDOMNode(this.refs.createEventBtn)).slideUp(200);
     }
 

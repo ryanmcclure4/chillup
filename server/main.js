@@ -8,7 +8,7 @@ var removeExpiredEvents = function() {
     cursor.forEach(function(event) {
         var now = new Date();
         var elapsed = (((now.getTime() - event.created.getTime()) / 1000) / 60) / 60;
-        if (elapsed >= event.exp) {
+        if ((elapsed >= event.exp) || (elapsed > 0.5 && !event.active)) {
             Events.remove(event._id);
         }
     });

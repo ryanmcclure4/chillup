@@ -1,5 +1,6 @@
 aldeed:geocoder@0.3.8
 allow-deny@1.0.4
+amplify@1.0.0
 autoupdate@1.2.9
 babel-compiler@6.6.4
 babel-runtime@0.1.8
@@ -71,6 +72,7 @@ templating@1.1.9
 templating-tools@1.0.4
 tmeasday:check-npm-versions@0.2.0
 tracker@1.0.13
+u2622:persistent-session@0.4.4
 ui@1.0.11
 underscore@1.0.8
 url@1.0.9
