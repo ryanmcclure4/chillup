@@ -101,6 +101,7 @@ button:focus {
     padding: 12px;
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .event-title.joined {
