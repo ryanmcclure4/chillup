@@ -8,7 +8,9 @@ import EventTitle from './EventTitle.jsx';
 export default class Event extends Component {
     constructor(props) {
         super(props);
-        var joined = Session.get('user') == this.props.data.author;
+        var joined = ($.inArray(Session.get('user'), this.props.data.attendees) != -1) ? true : false;
+        console.log(Session.get('user'));
+        console.log(this.props.data.attendees);
         this.state = {
             joined:joined,
             description:this.props.data.description
