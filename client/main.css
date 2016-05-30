@@ -225,13 +225,13 @@ button:focus {
 .inline-edit-exp {
     width: 20px;
     padding-right: 5px;
-    color: #fff;
+    color: rgba(0,0,0,0.3);
 }
 
 .inline-edit-exp-active{
     width: 20px;
     background-color: transparent;
-    color: #fff;
+    color: rgba(0,0,0,0.3);
     font-weight: 700;
     font-size: 1em;
     font-family: 'Open Sans';
@@ -246,10 +246,6 @@ button:focus {
     margin: 0 15px;
     color: rgba(0,0,0,0.3);
     font-size: 0.6em;
-}
-
-.exp-container-pending {
-    color: #fff;
 }
 
 .icon {

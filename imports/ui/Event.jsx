@@ -75,7 +75,7 @@ export default class Event extends Component {
                     onJoinEvent={this.onJoinEvent.bind(this)} 
                 />
                 <div className='event-description'>
-                    {this.props.data.active ?
+                    {(this.props.data.active && (this.props.data.author != Session.get('user'))) ?
                         <span>
                             {this.props.data.description}
                         </span>

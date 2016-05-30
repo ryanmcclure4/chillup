@@ -43,7 +43,7 @@ export default class EventTitle extends Component {
         return (
             <div ref='title' className={addClass}>
                 <span className='title-container'>
-                    {this.props.data.active ?
+                    {(this.props.data.active && (this.props.data.author != Session.get('user'))) ?
                         <span>
                             {this.props.data.title}
                         </span>
