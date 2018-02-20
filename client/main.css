@@ -72,16 +72,18 @@ button:focus {
 
 .btn-create-event {
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 30px;
     background-color: #ee9977;
     color: #fff;
     border: 3px solid #fff;
     font-weight: 700;
     box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    font-size: 1em;
 }
 
 .btn-create-event:hover {
     background-color: #ffaa88;
+    cursor: pointer;
 }
 
 .event {
@@ -90,7 +92,7 @@ button:focus {
     box-shadow: 0 0 3px rgba(0,0,0,0.3);
     font-size: 0.9em;
     text-align: left;
-    border-radius: 8px;
+    border-radius: 25px;
 }
 
 .event-title {
@@ -103,8 +105,8 @@ button:focus {
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
 }
 
 .event-title.joined {
@@ -175,6 +177,7 @@ button:focus {
     border: none;
     padding: 5px;
     height: 20px;
+    border-radius: 20px;
 }
 
 .comment-field:focus {
@@ -187,6 +190,9 @@ button:focus {
 
 .comment-text {
     flex:1;
+    padding: 10px;
+    font-size: 1.1em;
+    color: #555;
 }
 
 .title-container {
@@ -267,7 +273,7 @@ button:focus {
 .btn-join {
     float: right;
     padding: 10px 12px;
-    border-radius: 2px;
+    border-radius: 20px;
     border:none;
     background-color: rgba(0,0,0,0.2);
     color: #fff;
@@ -276,6 +282,7 @@ button:focus {
 
 .btn-join:hover {
     background-color: rgba(0,0,0,0.3);
+    cursor: pointer;
 }
 
 .btn-join.joined {
@@ -288,28 +295,34 @@ button:focus {
 }
 
 .btn-cancel {
-    padding: 8px 10px;
+    width: 30px;
+    height: 30px;
     margin-right: 12px;
-    border-radius: 2px;
+    border-radius: 20px;
     border:none;
     background-color: #ee9977;
     color: #fff;
+    font-size: 0.9em;
 }
 
 .btn-cancel:hover {
     background-color: #ffaa88;
+    cursor: pointer;
 }
 
 .btn-confirm {
-    padding: 8px 10px;
-    border-radius: 2px;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
     border:none;
+    font-size: 0.9em;
     background-color: #77ee77;
     color: #fff;
 }
 
 .btn-confirm:hover {
     background-color: #88ff88;
+    cursor: pointer;
 }
 
 @media (max-width:480px) {
