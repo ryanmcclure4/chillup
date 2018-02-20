@@ -72,7 +72,7 @@ button:focus {
 
 .btn-create-event {
     padding: 15px;
-    border-radius: 2px;
+    border-radius: 8px;
     background-color: #ee9977;
     color: #fff;
     border: 3px solid #fff;
@@ -90,6 +90,7 @@ button:focus {
     box-shadow: 0 0 3px rgba(0,0,0,0.3);
     font-size: 0.9em;
     text-align: left;
+    border-radius: 8px;
 }
 
 .event-title {
@@ -102,6 +103,8 @@ button:focus {
     display: flex;
     flex-direction: row;
     align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .event-title.joined {

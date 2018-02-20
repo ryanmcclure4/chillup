@@ -1,7 +1,7 @@
 Meteor.startup(function(){
     Tracker.autorun(function() { 
         var geo = Geolocation.latLng();
-        if (geo) {
+        if (geo && geo.lat && geo.lng) {
             Session.set('geo', geo);
 
             Meteor.call('getLocation', {lat:geo.lat, lng:geo.lng}, function(err, res) {
